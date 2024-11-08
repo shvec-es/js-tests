@@ -59,3 +59,4 @@ nextButton.addEventListener("click", ({ target }) => {
   const currentCount = Number(target.dataset.count);
   refs.testWrapper.innerHTML = allQuetionsMarkup[currentCount];
 });
+console.log('test');
