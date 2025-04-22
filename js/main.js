@@ -1,4 +1,4 @@
-import { quetions } from "./quetions.js";
+import { questions } from "./questions.js";
 
 const refs = {
   testWrapper: document.querySelector("#test"),
@@ -6,57 +6,89 @@ const refs = {
   explanationText: document.querySelector(".explanation-text"),
 };
 
-let currentQuetion = null;
-let currentAnswer = "";
-let correctAnswer = "";
+// let currentQuetion = null;
+// let currentAnswer = "";
+let currentIndex = 0;
 let studentScore = 0;
 
-const allQuetionsMarkup = quetions.map(
-  ({
-    quetion,
-    options,
-    answer,
-    explanation,
-    id,
-    credit,
-  }) => `<li class="test-item" id=${id}><p>${id}. ${quetion}</p>
-    <label><input type="radio" name="options-${id}" value="${options[0]}" />
-    ${options[0]}</label>
-    <label><input type="radio" name="options-${id}" value="${options[1]}" />
-    ${options[1]}</label>
-    <label><input type="radio" name="options-${id}" value="${options[2]}" />
-    ${options[2]}</label>
-    <label><input type="radio" name="options-${id}" value="${options[3]}" />
-    ${options[3]}</label></li>
-    <button type="button" class="next-button" data-count="${id}">next -></button>`
-);
+function renderQ(index) {
+  const { question, options, id } = questions[index];
 
-refs.testWrapper.innerHTML = allQuetionsMarkup[0];
+  refs.testWrapper.innerHTML = `<div class="test-item" id=${id}><p>${id}. ${question}</p>
+  ${options
+    .map(
+      (
+        option
+      ) => `<label><input type="radio" name="options" value="${option}" />
+     ${option}</label>`
+    )
+    .join("")}
+  </div>
+  <button type="button" class="next-button" data-index="${id}">Next -></button>`;
 
-const testItem = document.querySelector(".test-item");
-const nextButton = document.querySelector(".next-button");
+  document.querySelector(".test-item").addEventListener("click", checkA);
+  document.querySelector(".next-button").addEventListener("click", nextQ);
+}
+renderQ(currentIndex);
 
-testItem.addEventListener("click", ({ target }) => {
+function checkA({ target }) {
   if (target.nodeName !== "INPUT") return;
-  currentAnswer = target.value;
-  currentQuetion = quetions.find((q) => q.id === target.closest("li").id);
-  console.log(currentQuetion);
-  if (currentQuetion.answer === currentAnswer) {
-    studentScore += currentQuetion.credit;
+
+  const currentQuestion = questions[currentIndex];
+  const selectedAnswer = target.value;
+
+  if (currentQuestion.answer === selectedAnswer) {
+    studentScore += currentQuestion.credit;
     refs.answerResult.textContent = "Вітаю! Це правильна відповідь!🤩";
   } else {
     refs.answerResult.textContent = "Нажаль це неправильна відповідь😢";
   }
-  refs.explanationText.textContent = currentQuetion.explanation;
-  //   setTimeout(
-  //     () =>
-  //       (refs.testWrapper.innerHTML = allQuetionsMarkup[+currentQuetion.id + 1]),
-  //     1000
-  //   );
-});
+  refs.explanationText.textContent = currentQuestion.explanation;
+}
 
-nextButton.addEventListener("click", ({ target }) => {
-  const currentCount = Number(target.dataset.count);
-  refs.testWrapper.innerHTML = allQuetionsMarkup[currentCount];
-});
-console.log('test');
+function nextQ() {
+  currentIndex++;
+
+  if (currentIndex >= questions.length) {
+    const maxScore = questions.reduce((sum, q) => sum + q.credit, 0);
+    const level = getLevel(studentScore, maxScore);
+    refs.testWrapper.innerHTML =
+      "<button onclick=location.reload()>Почати знов!</button>";
+    refs.answerResult.textContent = `Вітаю! Ви пройшли тестування🥳 Сума набраних балів = ${studentScore} з ${maxScore} можливих`;
+    refs.explanationText.innerHTML = `Твій рівень підготовки - ${level.title}<br>${level.message}`;
+    return;
+  }
+  refs.answerResult.textContent = "";
+  refs.explanationText.textContent = "";
+  renderQ(currentIndex);
+}
+
+function getLevel(score, maxScore) {
+  const percent = (score / maxScore) * 100;
+
+  if (percent === 100) {
+    return {
+      title: "Експерт 💪",
+      message: "Фантастично! Ти справжній майстер JavaScript! 🚀",
+    };
+  }
+
+  if (percent >= 70) {
+    return {
+      title: "Вище середнього",
+      message: "Чудовий результат! Ще трішки — і ти експерт! 🔥",
+    };
+  }
+
+  if (percent >= 40) {
+    return {
+      title: "Середній",
+      message: "Ти на правильному шляху! Продовжуй практикуватися 💡",
+    };
+  }
+
+  return {
+    title: "Початківець",
+    message: "Кожен експерт колись починав. Не здавайся — ти зможеш! 💪",
+  };
+}

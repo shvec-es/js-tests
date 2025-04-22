@@ -1,6 +1,6 @@
-export const quetions = [
+export const questions = [
   {
-    quetion: "Що виведе код console.log(typeof null)?",
+    question: "Що виведе код console.log(typeof null)?",
     options: ["null", "object", "undefined", "function"],
     answer: "object",
     explanation: "Це особливість JavaScript — null повертає тип object.",
@@ -8,7 +8,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Який результат поверне вираз 5 == '5'?",
+    question: "Який результат поверне вираз 5 == '5'?",
     options: ["true", "false", "null", "undefined"],
     answer: "true",
     explanation:
@@ -17,7 +17,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Що виконає цикл for?",
+    question: "Що виконає цикл for?",
     options: [
       "Виконає блок коду, доки умова істинна",
       "Виконає блок коду один раз",
@@ -31,7 +31,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion: "Що поверне наступний код: const a = 0 || 5?",
+    question: "Що поверне наступний код: const a = 0 || 5?",
     options: [true, 0, false, 5],
     answer: "5",
     explanation:
@@ -40,7 +40,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Що повертає метод map() для масиву?",
+    question: "Що повертає метод map() для масиву?",
     options: [
       "Масив тих самих елементів",
       "Новий масив із зміненими елементами",
@@ -54,7 +54,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Що поверне наступний код: typeof NaN?",
+    question: "Що поверне наступний код: typeof NaN?",
     options: ["NaN", "object", "number", "string"],
     answer: "number",
     explanation: "В JavaScript NaN вважається числовим типом.",
@@ -62,7 +62,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion:
+    question:
       "Що відбувається з this в стрілковій функції, якщо вона викликається в об'єкті?",
     options: [
       "Залишається тим самим, що був при створенні функції",
@@ -77,7 +77,7 @@ export const quetions = [
     credit: 3,
   },
   {
-    quetion: "Як можна створити глибоку копію об'єкта?",
+    question: "Як можна створити глибоку копію об'єкта?",
     options: [
       "Object.assign({}, obj)",
       "JSON.parse(JSON.stringify(obj))",
@@ -91,7 +91,7 @@ export const quetions = [
     credit: 4,
   },
   {
-    quetion: "Що таке конструктор класу?",
+    question: "Що таке конструктор класу?",
     options: [
       "Метод, що завжди повертає null",
       "Метод, що ініціалізує об’єкт класу",
@@ -105,7 +105,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion: "Як отримати доступ до елемента DOM?",
+    question: "Як отримати доступ до елемента DOM?",
     options: [
       "document.querySelector()",
       "document.createElement()",
@@ -119,7 +119,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion:
+    question:
       "Чим відрізняється делегування подій від традиційної обробки подій?",
     options: [
       "Дозволяє видаляти події автоматично",
@@ -134,7 +134,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion:
+    question:
       "Що відбувається, якщо передати відсутнє значення при деструктуризації об'єкта?",
     options: [
       "Викидає помилку",
@@ -148,7 +148,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Що таке модульність коду?",
+    question: "Що таке модульність коду?",
     options: [
       "Розбиття коду на частини для зменшення ваги",
       "Одна велика функція для всієї логіки",
@@ -161,7 +161,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion: "Що робить localStorage?",
+    question: "Що робить localStorage?",
     options: [
       "Зберігає дані на сервері",
       "Очищає дані",
@@ -175,7 +175,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion: "Що повертає метод reduce()?",
+    question: "Що повертає метод reduce()?",
     options: [
       "Новий масив",
       "Одне значення, що є результатом обчислень над усіма елементами масиву",
@@ -190,7 +190,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion: "Яка основна мета використання бібліотек у JavaScript?",
+    question: "Яка основна мета використання бібліотек у JavaScript?",
     options: [
       "Для скорочення обсягу коду і спрощення його підтримки",
       "Для автоматичного створення змінних та функцій",
@@ -204,7 +204,7 @@ export const quetions = [
     credit: 2,
   },
   {
-    quetion:
+    question:
       "Що станеться, якщо викликати setInterval всередині функції setTimeout?",
     options: [
       "Інтервал не запуститься, поки не закінчиться setTimeout",
@@ -220,7 +220,7 @@ export const quetions = [
     credit: 4,
   },
   {
-    quetion: "Що виконує метод then() у промісах?",
+    question: "Що виконує метод then() у промісах?",
     options: [
       "Відміняє проміс",
       "Запускає проміс ще раз",
@@ -234,7 +234,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Що виконує асинхронна функція async?",
+    question: "Що виконує асинхронна функція async?",
     options: [
       "Завжди повертає null",
       "Блокує інші функції",
@@ -248,7 +248,7 @@ export const quetions = [
     credit: 1,
   },
   {
-    quetion: "Як працюють try...catch блоки в JavaScript?",
+    question: "Як працюють try...catch блоки в JavaScript?",
     options: [
       "Перехоплюють лише синтаксичні помилки",
       "Не працюють з асинхронними помилками",
@@ -259,6 +259,20 @@ export const quetions = [
     explanation:
       "try...catch обробляє помилки і дозволяє уникати зупинки виконання коду.",
     id: "20",
+    credit: 2,
+  },
+  {
+    id: "21",
+    question: "Що таке hoisting у JavaScript?",
+    options: [
+      "Підняття функцій та змінних на верхівку області видимості",
+      "Автоматичне створення класів",
+      "Затримка виконання коду",
+      "Створення замикань",
+    ],
+    answer: "Підняття функцій та змінних на верхівку області видимості",
+    explanation:
+      "Hoisting — це механізм, коли оголошення змінних і функцій логічно переміщуються вгору.",
     credit: 2,
   },
 ];
