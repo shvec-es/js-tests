@@ -6,25 +6,23 @@ const refs = {
   explanationText: document.querySelector(".explanation-text"),
 };
 
-// let currentQuetion = null;
-// let currentAnswer = "";
 let currentIndex = 0;
 let studentScore = 0;
 
 function renderQ(index) {
   const { question, options, id } = questions[index];
 
-  refs.testWrapper.innerHTML = `<div class="test-item" id=${id}><p>${id}. ${question}</p>
+  refs.testWrapper.innerHTML = `<div class="test-item" id=${id}><h2 class="question">${id}. ${question}</h2>
   ${options
     .map(
       (
         option
-      ) => `<label><input type="radio" name="options" value="${option}" />
+      ) => `<label class="options"><input type="radio" name="options" value="${option}" />
      ${option}</label>`
     )
     .join("")}
   </div>
-  <button type="button" class="next-button" data-index="${id}">Next -></button>`;
+  <button type="button" class="next-button" data-index="${id}" disabled>Next -></button>`;
 
   document.querySelector(".test-item").addEventListener("click", checkA);
   document.querySelector(".next-button").addEventListener("click", nextQ);
@@ -44,6 +42,10 @@ function checkA({ target }) {
     refs.answerResult.textContent = "Нажаль це неправильна відповідь😢";
   }
   refs.explanationText.textContent = currentQuestion.explanation;
+  document.querySelector(".next-button").disabled = false;
+  document
+    .querySelectorAll("input[name='options']")
+    .forEach((i) => (i.disabled = true));
 }
 
 function nextQ() {
