@@ -33,13 +33,22 @@ function checkA({ target }) {
   if (target.nodeName !== "INPUT") return;
 
   const currentQuestion = questions[currentIndex];
+  const correctInput = [
+    ...document.querySelectorAll('input[type="radio"]'),
+  ].find((i) => i.value === currentQuestion.answer);
+  console.log(correctInput);
+
   const selectedAnswer = target.value;
+  const input = target.closest("input");
 
   if (currentQuestion.answer === selectedAnswer) {
     studentScore += currentQuestion.credit;
     refs.answerResult.textContent = "Вітаю! Це правильна відповідь!🤩";
+    input.classList.add("success");
   } else {
     refs.answerResult.textContent = "Нажаль це неправильна відповідь😢";
+    input.classList.add("error");
+    correctInput.classList.add("success");
   }
   refs.explanationText.textContent = currentQuestion.explanation;
   document.querySelector(".next-button").disabled = false;

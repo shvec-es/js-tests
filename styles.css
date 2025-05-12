@@ -2,9 +2,10 @@
   --main-color: #111827;
   --accent-color: #3b82f6;
   --bg-color: #f9fafb;
-  --success: #10b981;
+  --success: #38e580;
   --error: #ef4444;
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --border-color: rgb(226, 218, 218);
 }
 
 body {
@@ -120,6 +121,10 @@ section {
 
 /* #region test */
 .test-item {
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .question {
@@ -128,14 +133,63 @@ section {
 
 .options {
   display: block;
-  margin-bottom: 10px;
   font-size: 18px;
 
   transition: transform var(--animation);
 }
 
+.options:not(:last-child) {
+  margin-bottom: 10px;
+}
+
 .options:hover {
   transform: scale(1.03);
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #adb5bd;
+  border-radius: 50%;
+  transition: var(--transition);
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  /* border: 2px solid #38e580; */
+}
+
+input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  /* background: #38e580; */
+
+  border-radius: 50%;
+}
+
+input[type="radio"].success {
+  border: 2px solid var(--success);
+}
+
+input[type="radio"].success::after {
+  background-color: var(--success);
+}
+
+input[type="radio"].error {
+  border: 2px solid var(--error);
+}
+input[type="radio"].error::after {
+  background-color: var(--error);
 }
 
 .next-button {
@@ -144,6 +198,10 @@ section {
   border: 1px solid var(--bg-color);
   border-radius: 6px;
   padding: 15px;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
 
   transition: color var(--animation), background-color var(--animation),
     border-color var(--animation);
@@ -157,10 +215,17 @@ section {
 }
 
 .next-button:disabled {
-  color: var(--main-color);
-  background-color: #f7f4f4;
-  border-color: var(--main-color);
+  color: var(--border-color);
+  background-color: #79a8f4;
+  border-color: var(--border-color);
   cursor: not-allowed;
+}
+
+.answer-wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  /* text-align: center; */
 }
 .answer-result,
 .explanation-text {
